@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="TestCshtml5WCF.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestCshtml5WCF"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"> 
+    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+        <StackPanel Margin="20">
+            <TextBlock Text="INTRODUCTION:" Margin="0,20,0,0" Foreground="Black" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <TextBlock Text="This app is used to test the WCF features of CSHTML5." Margin="0,10,0,0" Foreground="Black" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+            <TextBlock Text="Multiple ways of calling the service are tested: sync, task-based async, and event-based async." Margin="0,0,0,0" Foreground="Black" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+            <TextBlock Text="Each scenario is tested against an endpoint with [XmlSerializerFormat] or an endpoint without [XmlSerializerFormat]." Margin="0,0,0,0" Foreground="Black" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+            <TextBlock Text="TIP: to inspect the WCF calls with Fiddler, open the file 'app.config' and replace 'localhost' with 'localhost.fiddler'." Margin="0,0,0,0" Foreground="Black" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+            <TextBlock Text="LIST OF TODO's:" Margin="0,20,0,0" Foreground="Black" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <DataGrid x:Name="DataGrid1" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,10,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                    <DataGridTextColumn Header="Creation Date" Binding="{Binding CreationDate}"/>
+                    <DataGridTextColumn Header="NullableTest1" Binding="{Binding NullableTest1}"/>
+                    <DataGridTextColumn Header="NullableTest2" Binding="{Binding NullableTest2}"/>
+                    <DataGridTextColumn Header="CharValue" Binding="{Binding CharValue}"/>
+                    <DataGridTextColumn Header="Importance (enum)" Binding="{Binding Importance}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock Text="TESTS:" Margin="0,20,0,0" Foreground="Black" HorizontalAlignment="Left" FontWeight="Bold"/>
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Without [XmlSerializerFormat] attribute:" FontSize="16" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Create a new ToDo:" Foreground="Black"  Margin="0,10,0,0" HorizontalAlignment="Right"/>
+                    <TextBox x:Name="SoapToDoTextBox" Width="200" Text="Sample To-Do" Foreground="Black" Background="#FFEEEEEE" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Create" Click="ButtonAddToDo_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Create (task async)" Click="ButtonAddToDoAsync_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Refresh the list" Foreground="White" Background="#FFE44D26" Click="ButtonRefreshToDos_Click" HorizontalAlignment="Right" Margin="0,10,0,0"/>
+                    <Button Content="Refresh the list (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonRefreshToDosAsync_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Delete selected" Click="ButtonDeleteToDo_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete selected (task async)" Click="ButtonDeleteToDoAsync_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete all ToDo's" Click="ButtonDeleteAllToDos_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete all ToDo's (task async)" Click="ButtonDeleteAllToDosAsync_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Replace selected ToDo with a new one" Click="ButtonReplaceToDo_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Replace selected ToDo with a new one (task async)" Click="ButtonReplaceToDoAsync_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Get number of ToDo's" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDos_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosAsync_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's plus five" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosPlusFive_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's plus five (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosPlusFiveAsync_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get current server date" Foreground="White" Background="#FFE44D26" Click="ButtonGetServerDate_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get current server date (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonGetServerDateAsync_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Multiply 3 by 4 by 5 on the server" Foreground="White" Background="#FFE44D26" Click="ButtonMultiplyNumbers_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Multiply 3 by 4 by 5 on the server (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonMultiplyNumbersAsync_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get list of tags of selected ToDo" Foreground="White" Background="#FFE44D26" Click="ButtonGetListOfTags_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive FaultException (without try/catch around the call)" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveFaultExceptionWithoutTryCatch" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Same as above but async" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveFaultExceptionWithoutTryCatchAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive FaultException (with try/catch)" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveFaultExceptionWithTryCatch" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Same as above but async" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveFaultExceptionWithTryCatchAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive Exception (without try/catch around the call)" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveServerErrorWithoutTryCatch" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Same as above but async" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveServerErrorWithoutTryCatchAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive Exception (with try/catch)" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveServerErrorWithTryCatch" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Same as above but async" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveServerErrorWithTryCatchAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive FaultException (event-based)" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveFaultExceptionEventAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive Exception (event-based)" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveServerErrorEventAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive Server not found (with try/catch)" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveUnreachableServerWithTryCatch" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Same as above but async" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveUnreachableServerWithTryCatchAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Receive Server not found" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveUnreachableServerWithoutTryCatch" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Same as above but async" Foreground="White" Background="#FFE44D26" Click="ButtonReceiveUnreachableServerWithoutTryCatchAsync" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="EVENT-BASED ASYNC:" FontSize="16" HorizontalAlignment="Right"/>
+                    <Button Content="Create" Click="ButtonAddToDo3_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Refresh the list" Foreground="White" Background="#FFE44D26" Click="ButtonRefreshToDos3_Click" HorizontalAlignment="Right" Margin="0,10,0,0"/>
+                    <Button Content="Delete selected" Click="ButtonDeleteToDo3_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete all ToDo's" Click="ButtonDeleteAllToDos3_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Replace selected ToDo with a new one" Click="ButtonReplaceToDo3_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Get number of ToDo's" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDos3_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's plus five" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosPlusFive3_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get current server date" Foreground="White" Background="#FFE44D26" Click="ButtonGetServerDate3_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Multiply 3 by 4 by 5 on the server" Foreground="White" Background="#FFE44D26" Click="ButtonMultiplyNumbers3_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="With [XmlSerializerFormat] attribute:" FontSize="16" HorizontalAlignment="Right" Margin="20,0,0,0"/>
+                    <TextBlock Text="Create a new ToDo:" Foreground="Black"  Margin="0,10,0,0" HorizontalAlignment="Right"/>
+                    <TextBox x:Name="SoapToDoTextBox2" Width="200" Text="Sample To-Do" Foreground="Black" Background="#FFEEEEEE" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Create" Click="ButtonAddToDo2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Create (task async)" Click="ButtonAddToDoAsync2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Refresh the list" Foreground="White" Background="#FFE44D26" Click="ButtonRefreshToDos2_Click" HorizontalAlignment="Right" Margin="0,10,0,0"/>
+                    <Button Content="Refresh the list (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonRefreshToDosAsync2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Delete selected" Click="ButtonDeleteToDo2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete selected (task async)" Click="ButtonDeleteToDoAsync2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete all ToDo's" Click="ButtonDeleteAllToDos2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete all ToDo's (task async)" Click="ButtonDeleteAllToDosAsync2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Replace selected ToDo with a new one" Click="ButtonReplaceToDo2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Replace selected ToDo with a new one (task async)" Click="ButtonReplaceToDoAsync2_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Get number of ToDo's" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDos2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosAsync2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's plus five" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosPlusFive2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's plus five (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosPlusFiveAsync2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get current server date" Foreground="White" Background="#FFE44D26" Click="ButtonGetServerDate2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get current server date (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonGetServerDateAsync2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Multiply 3 by 4 by 5 on the server" Foreground="White" Background="#FFE44D26" Click="ButtonMultiplyNumbers2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Multiply 3 by 4 by 5 on the server (task async)" Foreground="White" Background="#FFE44D26" Click="ButtonMultiplyNumbersAsync2_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="4">
+                    <TextBlock Text="EVENT-BASED ASYNC:" FontSize="16" HorizontalAlignment="Right"/>
+                    <Button Content="Create" Click="ButtonAddToDo4_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Refresh the list" Foreground="White" Background="#FFE44D26" Click="ButtonRefreshToDos4_Click" HorizontalAlignment="Right" Margin="0,10,0,0"/>
+                    <Button Content="Delete selected" Click="ButtonDeleteToDo4_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Delete all ToDo's" Click="ButtonDeleteAllToDos4_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Replace selected ToDo with a new one" Click="ButtonReplaceToDo4_Click" Foreground="White" Background="#FFE44D26" Margin="0,5,0,0" HorizontalAlignment="Right"/>
+                    <Button Content="Get number of ToDo's" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDos4_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get number of ToDo's plus five" Foreground="White" Background="#FFE44D26" Click="ButtonGetNumberOfToDosPlusFive4_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Get current server date" Foreground="White" Background="#FFE44D26" Click="ButtonGetServerDate4_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                    <Button Content="Multiply 3 by 4 by 5 on the server" Foreground="White" Background="#FFE44D26" Click="ButtonMultiplyNumbers4_Click" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

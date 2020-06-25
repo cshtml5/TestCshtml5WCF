@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WcfService1" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfService1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:22316/Service1.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:22316/Service1.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ToDoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bytes" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="CharValue" type="ser:char" />
+      <xs:element minOccurs="0" name="CreationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Importance" type="tns:ToDoImportance" />
+      <xs:element minOccurs="0" name="NullableTest1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NullableTest2" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NullableTest3" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NullableTest4" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Tags" nillable="true" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ToDoItem" nillable="true" type="tns:ToDoItem" />
+  <xs:simpleType name="ToDoImportance">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Low" />
+      <xs:enumeration value="Mid" />
+      <xs:enumeration value="High" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ToDoImportance" nillable="true" type="tns:ToDoImportance" />
+  <xs:complexType name="ArrayOfToDoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ToDoItem" nillable="true" type="tns:ToDoItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfToDoItem" nillable="true" type="tns:ArrayOfToDoItem" />
+</xs:schema>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:15026/Service1.svc?xsd=xsd1" namespace="http://microsoft.com/wsdl/types/" />
+  <xs:element name="GetToDos">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetToDosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetToDosResult" type="tns:ArrayOfToDoItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfToDoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ToDoItem" nillable="true" type="tns:ToDoItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ToDoItem">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://microsoft.com/wsdl/types/" minOccurs="1" maxOccurs="1" name="Id" type="q1:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CreationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Bytes" type="xs:base64Binary" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NullableTest1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NullableTest2" nillable="true" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NullableTest3" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NullableTest4" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q2="http://microsoft.com/wsdl/types/" minOccurs="1" maxOccurs="1" name="CharValue" type="q2:char" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Importance" type="tns:ToDoImportance" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Tags" type="tns:ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ToDoImportance">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Low" />
+      <xs:enumeration value="Mid" />
+      <xs:enumeration value="High" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AddOrUpdateToDo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="toDoItem" type="tns:ToDoItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddOrUpdateToDoResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="ReplaceToDo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="toDoItemToReplace" type="tns:ToDoItem" />
+        <xs:element minOccurs="0" maxOccurs="1" name="newToDo" type="tns:ToDoItem" />
+        <xs:element minOccurs="1" maxOccurs="1" name="throwFaultExceptionIfNotFound" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReplaceToDoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReplaceToDoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteToDo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="toDoItem" type="tns:ToDoItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteToDoResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="DeleteAllToDos">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="DeleteAllToDosResponse">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetTheNumberOfToDos">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetTheNumberOfToDosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetTheNumberOfToDosResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTheNumberOfToDosPlusX">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="x" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTheNumberOfToDosPlusXResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetTheNumberOfToDosPlusXResult" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServerDate">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetServerDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetServerDateResult" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MultiplyThreeNumbers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="x1" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="x2" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="x3" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MultiplyThreeNumbersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="MultiplyThreeNumbersResult" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
